@@ -28,3 +28,4 @@ Later we can address issues of resilience...
 - [Polling loop over MySQL](http://www.gianlucaguarini.com/blog/push-notification-server-streaming-on-a-mysql-database/)
 - [Article on Postgres notify/listen in node](http://voxpelli.com/2015/01/pubsub-with-postgres-and-node-js/)
 - [Prometheus instrumentation for node.js](https://github.com/StreamMachine/prometheus_client_nodejs)
+- [Proetheus push gateway](https://github.com/prometheus/pushgateway)

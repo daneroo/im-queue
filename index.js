@@ -1,9 +1,44 @@
 'use strict';
 
+var Prometheus = require("prometheus-client");
 var log = console;
 
 log.info('Queue.push(hello)');
 
+// Setup Prometheus
+function setupPrometheus() {
+  var client = new Prometheus();
+
+  var counter = client.newCounter({
+    namespace: 'counter_test',
+    name: 'elapsed_counters_total',
+    help: 'The number of counter intervals that have elapsed.'
+  });
+
+  var gauge = client.newGauge({
+    namespace: 'counter_test',
+    name: 'random_number',
+    help: 'A random number we occasionally set.'
+  });
+
+  setInterval (function(){
+    counter.increment({period: "1sec"})
+  }, 1000);
+  setInterval (function(){
+    counter.increment({period: "2sec"})
+  }, 2000);
+  setInterval (function(){
+    gauge.set({period: "1sec"},Math.random() * 1000);
+  }, 1000);
+
+  client.listen(9090);
+  // app = express()
+  // app.get("/metrics",client.metricsFunc())
+  // app.listen(9090)
+}
+setupPrometheus();
+
+// Setup iterating processes
 var maxCount = 1e6;
 var expected = maxCount * (maxCount + 1) / 2; // sum(1..maxCount)
 var startTime;
