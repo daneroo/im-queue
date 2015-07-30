@@ -24,4 +24,5 @@ Later we can address issues of resilience...
 ## References
 
 - [Article by Percona on using Mysql as a queue](https://blog.engineyard.com/2011/5-subtle-ways-youre-using-mysql-as-a-queue-and-why-itll-bite-you/)
+- [Polling loop over MySQL](http://www.gianlucaguarini.com/blog/push-notification-server-streaming-on-a-mysql-database/)
 - [Article on Postgres notify/listen in node](http://voxpelli.com/2015/01/pubsub-with-postgres-and-node-js/)
