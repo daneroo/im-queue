@@ -12,6 +12,7 @@ Later we can address issues of resilience...
 - Simple sum (async code)
 - Using promises
 - putting the work into memory
+- Front-end for control, (metrics later)
 - putting the work into MySQL/Postgres (postgress has notify/listen)
 - putting the work into redis 
 	- [kue](https://github.com/Automattic/kue)
@@ -26,3 +27,4 @@ Later we can address issues of resilience...
 - [Article by Percona on using Mysql as a queue](https://blog.engineyard.com/2011/5-subtle-ways-youre-using-mysql-as-a-queue-and-why-itll-bite-you/)
 - [Polling loop over MySQL](http://www.gianlucaguarini.com/blog/push-notification-server-streaming-on-a-mysql-database/)
 - [Article on Postgres notify/listen in node](http://voxpelli.com/2015/01/pubsub-with-postgres-and-node-js/)
+- [Prometheus instrumentation for node.js](https://github.com/StreamMachine/prometheus_client_nodejs)
