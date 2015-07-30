@@ -16,5 +16,7 @@
   "bugs": {
     "url": "https://github.com/daneroo/im-queue/issues"
   },
-  "homepage": "https://github.com/daneroo/im-queue#readme"
+  "homepage": "https://github.com/daneroo/im-queue#readme",
+  "dependencies": {
+  }
 }
