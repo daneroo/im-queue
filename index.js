@@ -8,14 +8,15 @@ var maxCount = 1e6;
 var expected = maxCount * (maxCount + 1) / 2; // sum(1..maxCount)
 var startTime;
 
-function runner(func,name) {
+function runner(func, name) {
   function start() {
-    startTime = +new Date()
+    startTime = +new Date();
   }
+
   function stop(aSum) {
     var elapsed = +new Date() - startTime;
     log.info('time::%s %d ms for %d events', name, elapsed, maxCount);
-    log.info('%s::Expected %d, got %d: %s',name, expected, aSum, (expected === aSum) ? 'OK' : 'NOT OK');
+    log.info('%s::Expected %d, got %d: %s', name, expected, aSum, (expected === aSum) ? 'OK' : 'NOT OK');
     return elapsed;
   }
   return function() {
@@ -23,9 +24,8 @@ function runner(func,name) {
       .then(start)
       .then(func)
       .then(stop);
-  }
+  };
 }
-
 
 function simple() {
   var sum = 0;
@@ -54,5 +54,5 @@ function simpleP() {
 }
 
 Promise.resolve(42)
-  .then(runner(simple,'Simple'))
-  .then(runner(simpleP,'Promise'));
+  .then(runner(simple, 'Simple'))
+  .then(runner(simpleP, 'Promise'));
