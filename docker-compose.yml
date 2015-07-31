@@ -1,0 +1,22 @@
+
+# this is the puls, the monitor and the static app.
+app:
+  # image: daneroo/im-rain
+  # image: imetrical/im-rain
+  build: .
+  # environment:
+  #   - COUCH_HOST=couch
+  #   - NODE_NAME
+  # links:
+  #   - mydb
+  #   - red
+  #   - rabbit
+  ports:
+    - 80:8000
+
+prom:
+  build: docker/prometheus
+  ports:
+    - 9090:9090
+  links:
+    - app

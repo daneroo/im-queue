@@ -29,3 +29,9 @@ Later we can address issues of resilience...
 - [Article on Postgres notify/listen in node](http://voxpelli.com/2015/01/pubsub-with-postgres-and-node-js/)
 - [Prometheus instrumentation for node.js](https://github.com/StreamMachine/prometheus_client_nodejs)
 - [Proetheus push gateway](https://github.com/prometheus/pushgateway)
+
+## Project Layout
+
+- `/`: node application which serves the job control api, (and static web app)
+- `docker/` docker related orchestration and support files
+- `www`: static web app
