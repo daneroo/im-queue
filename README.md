@@ -11,6 +11,7 @@ Later we can address issues of resilience...
 
 - Simple sum (async code)
 - Using promises
+- Using Reactive sequence (rx.js)
 - putting the work into memory
 - Front-end for control, (metrics later)
 - putting the work into MySQL/Postgres (postgress has notify/listen)
