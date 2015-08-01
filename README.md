@@ -23,6 +23,13 @@ Later we can address issues of resilience...
 - Metrics [Prometheus](https://github.com/prometheus/node_exporter)
 - Multiple workers (concurrency)
 
+## Prometheus Metrics
+
+We also instrumented redis metrics collection through another container [redis_exporter](https://github.com/oliver006/redis_exporter)
+
+- [app metrics](http://docker/metrics)
+- [redis metrics](http://docker:9121/metrics) from redis_exporter
+- [Prometheus' own metrics](http://docker:9090/metrics)
 ## References
 
 - [Article by Percona on using Mysql as a queue](https://blog.engineyard.com/2011/5-subtle-ways-youre-using-mysql-as-a-queue-and-why-itll-bite-you/)

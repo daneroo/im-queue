@@ -16,4 +16,5 @@ metrics.prometheus.listen(8000);
 // start some tasks
 Promise.resolve(42)
   .then(task.runner(task.tasks.simple, 'Simple'))
-  .then(task.runner(task.tasks.simpleP, 'Promise'));
+  .then(task.runner(task.tasks.simpleP, 'Promise'))
+  .then(task.runner(task.tasks.redis, 'Redis'));

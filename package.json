@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/daneroo/im-queue#readme",
   "dependencies": {
+    "kue": "^0.9.4",
     "prometheus-client": "^0.1.0"
   }
 }

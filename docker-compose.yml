@@ -7,16 +7,31 @@ app:
   # environment:
   #   - COUCH_HOST=couch
   #   - NODE_NAME
-  # links:
+  links:
+    - red
   #   - mydb
-  #   - red
   #   - rabbit
   ports:
     - 80:8000
 
 prom:
   build: docker/prometheus
-  ports:
-    - 9090:9090
   links:
     - app
+    - redisexporter
+  ports:
+    - 9090:9090
+
+red:
+  image: redis
+  ports:
+    - 6379:6379
+
+redisexporter:
+  image: 21zoo/redis_exporter
+  # actuall just params because theris an entrypoint
+  command: --redis.addr=red:6379
+  links:
+    - red
+  ports:
+    - 9121:9121
