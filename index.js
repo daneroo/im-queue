@@ -16,11 +16,11 @@ metrics.prometheus.listen(8000);
 // start some tasks
 function tryemall() {
   return Promise.resolve(42)
-    .then(task.runner(task.tasks.simple, 'Simple'))
-    .then(task.runner(task.tasks.simpleP, 'Promise'))
+    // .then(task.runner(task.tasks.simple, 'Simple'))
+    // .then(task.runner(task.tasks.simpleP, 'Promise'))
     .then(task.runner(task.tasks.reactive, 'Reactive'))
     .then(task.runner(task.tasks.redis, 'Redis'));
 }
 
 tryemall();
-setInterval(tryemall,10000);
+setInterval(tryemall,30000);
