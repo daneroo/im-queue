@@ -19,7 +19,7 @@ Later we can address issues of resilience...
 	- [kue](https://github.com/Automattic/kue)
 	- [rsmq](https://github.com/smrchy/rsmq)
 	- [bull](https://github.com/OptimalBits/bull)
-- putting the work into RabbitMQ
+- putting the work into RabbitMQ [amqplib](https://github.com/squaremo/amqp.node/) (see also rabbit.js for streams overlay/ might be a start for Rx event stream)
 - Metrics [Prometheus](https://github.com/prometheus/node_exporter)
 - Multiple workers (concurrency)
 

@@ -8,9 +8,9 @@ app:
   #   - COUCH_HOST=couch
   #   - NODE_NAME
   links:
-    - red
   #   - mydb
-  #   - rabbit
+    - red
+    - rabbit
   ports:
     - 80:8000
 
@@ -35,3 +35,9 @@ redisexporter:
     - red
   ports:
     - 9121:9121
+
+rabbit:
+  image: rabbitmq:management
+  ports:
+    - 5672:5672
+    - 15672:15672 # web management interface
