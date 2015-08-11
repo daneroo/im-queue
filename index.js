@@ -19,8 +19,9 @@ function tryemall() {
     // .then(task.runner(task.tasks.simple, 'Simple'))
     // .then(task.runner(task.tasks.simpleP, 'Promise'))
     .then(task.runner(task.tasks.reactive, 'Reactive'))
+    .then(task.runner(task.tasks.mysql, 'MySQL'));
     // .then(task.runner(task.tasks.redis, 'Redis'));
-    .then(task.runner(task.tasks.rabbit, 'Rabbit'));
+    // .then(task.runner(task.tasks.rabbit, 'Rabbit'));
 }
 
 tryemall();

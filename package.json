@@ -19,7 +19,9 @@
   "homepage": "https://github.com/daneroo/im-queue#readme",
   "dependencies": {
     "amqplib": "^0.3.2",
+    "bluebird": "^2.9.34",
     "kue": "^0.9.4",
+    "mysql": "^2.8.0",
     "prometheus-client": "^0.1.0",
     "rx": "^2.5.3"
   }

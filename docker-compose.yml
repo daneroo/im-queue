@@ -8,7 +8,7 @@ app:
   #   - COUCH_HOST=couch
   #   - NODE_NAME
   links:
-  #   - mydb
+    - mydb
     - red
     - rabbit
   ports:
@@ -29,7 +29,7 @@ red:
 
 redisexporter:
   image: 21zoo/redis_exporter
-  # actuall just params because theris an entrypoint
+  # actually just command params because there is an entrypoint
   command: --redis.addr=red:6379
   links:
     - red
@@ -41,3 +41,14 @@ rabbit:
   ports:
     - 5672:5672
     - 15672:15672 # web management interface
+
+mydb:
+  image: mysql
+  environment:
+    - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    # - MYSQL_ROOT_PASSWORD=supersecret
+    - MYSQL_DATABASE=queue
+    - MYSQL_USER=imetrical
+    - MYSQL_PASSWORD=secret
+  ports:
+    - 3306:3306
