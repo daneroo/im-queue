@@ -1,5 +1,7 @@
 # im-queue
 
+** When in the course of asynchronous events, it becomes necessary for one process to unbind the handlers which have connected them to another, and to assume the scale to which the Laws of Crockford and Goedel entitle them, a decent respect to the opinions of subscribers requires that they should declare the causes which impel them to the concurrency.**
+
 This is a test repo to test different approaches to a distributed work queue.
 
 To be as simple as possible, the task will be to simply effect a sum, where incoming events will be simple integers.
