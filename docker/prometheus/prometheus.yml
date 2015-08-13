@@ -10,7 +10,7 @@ global:
 
   # Attach these extra labels to all timeseries collected by this Prometheus instance.
   labels:
-      monitor: 'codelab-monitor'
+      monitor: 'im-queue-experiment'
 
 # Load and evaluate rules in this file every 'evaluation_interval' seconds.
 rule_files:
@@ -33,6 +33,10 @@ scrape_configs:
 
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: 'app'
+
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 1s
+    scrape_timeout: 10s
 
     # hostname is from docker-compose label
     target_groups:

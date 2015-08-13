@@ -29,7 +29,7 @@ Later we can address issues of resilience...
 
 We also instrumented redis metrics collection through another container [redis_exporter](https://github.com/oliver006/redis_exporter)
 
-Here is [an example](http://docker:9090/graph#%5B%7B%22range_input%22%3A%225m%22%2C%22end_input%22%3A%22%22%2C%22step_input%22%3A%22%22%2C%22stacked%22%3A%22%22%2C%22expr%22%3A%22rate(redis_total_commands_processed%5B1m%5D%29%22%2C%22tab%22%3A0%7D%5D)
+Here is [an example of queue consumption rate](http://docker:9090/graph#%5B%7B%22range_input%22%3A%225m%22%2C%22end_input%22%3A%22%22%2C%22step_input%22%3A%22%22%2C%22stacked%22%3A%220%22%2C%22expr%22%3A%22log10(rate(queue_trial_pop_total%5B15s%5D))%22%2C%22tab%22%3A0%7D%5D).
 
 - [app metrics](http://docker/metrics)
 - [redis metrics](http://docker:9121/metrics) from redis_exporter
