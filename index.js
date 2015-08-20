@@ -42,22 +42,8 @@ io.on('connection', function(socket) {
   });
 });
 
+// Inject socket.io into metrics
 metrics.setSockio(io);
-
-setInterval(function() {
-  var opts = {
-    name: 'batch_rate',
-    engine: 'Fake',
-  };
-  // io.emit('gauge', opts);
-  metrics.set(opts,Math.floor(Math.random() * 1000));
-
-  var opts2 = {
-    name: 'push_total',
-    engine: 'Fake'
-  };
-  metrics.increment(opts2, 1000);
-}, 1000);
 
 // start some tasks
 function tryemall() {

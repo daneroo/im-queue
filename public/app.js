@@ -60,9 +60,9 @@ var ChatApp = React.createClass({
     message.id = uniqueId++;
     message.stamp = new Date().toISOString();
 
-    messages.unshift(message);
+    messages.push(message);
     while (messages.length>maxMessages){
-      messages.pop();
+      messages.shift();
     }
     this.forceUpdate();
   },

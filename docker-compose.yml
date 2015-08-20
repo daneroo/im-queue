@@ -45,8 +45,8 @@ rabbit:
 mydb:
   image: mysql
   environment:
-    - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-    # - MYSQL_ROOT_PASSWORD=supersecret
+    # - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    - MYSQL_ROOT_PASSWORD=supersecret
     - MYSQL_DATABASE=queue
     - MYSQL_USER=imetrical
     - MYSQL_PASSWORD=secret
