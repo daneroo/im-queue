@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>im-Queue Labs</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+    <div class="section what">
+      <h2>What is going on here?</h2>
+      <ul>
+        <li>Node application / React.js UI / Socket.io </li>
+        <ul>
+          <li>Queue's on MySQl/Redis/RabbitMQ</li>
+          <li>Metrics collection with Prometheus</li>
+        </ul>
+
+        <li>This application was packaged into a docker container image</li>
+        <li>And orchestrated with dependent services with docker-compose</li>
+      </ul>
+
+      <div class="logo">
+        <center>
+          <img src="images/reactjs.png" alt="React">
+          <img src="images/nodejs.png" alt="Node">
+          <img src="images/git.png" alt="GIT">
+          <img src="images/docker.jpg" alt="Docker">
+        </center>
+      </div>
+    </div>
+    <div id="content"></div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://fb.me/react-with-addons-0.13.1.js"></script>
+    <!-- <script src="http://fb.me/react-with-addons-0.13.1.min.js"></script> -->
+    <script src="http://fb.me/JSXTransformer-0.13.1.js"></script>
+    <script type="text/jsx" src="app.js"></script>
+</body>
+
+</html>
