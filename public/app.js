@@ -9,14 +9,35 @@ var Gauge = React.createClass({
   render: function(){
     var cx = React.addons.classSet;
     var classes = cx({
-      'engine': this.props.engine,
+      'engine': this.props.gauge.engine,
     });
     return(
       <div className={classes}>
-        Engine: {this.props.engine}
-        Rate: {this.props.value.toFixed(0)}
+        Engine: {this.props.gauge.engine} &nbsp;
+        Rate: {this.props.gauge.value.toFixed(0)}
       </div>
     )
+  }
+});
+
+function mapObject(object, callback) {
+  return Object.keys(object).map(function (key) {
+    return callback(key, object[key]);
+  });
+}
+var GaugeSet = React.createClass({
+  render: function(){
+    var renderGauge = function(key,gauge){
+      return <Gauge key={key} gauge={gauge} />
+    }
+    return (
+      <div className="section">
+        <h2> Gauges: </h2>
+        <ul className="gauges">
+          { mapObject(this.props.gauges,renderGauge)}
+        </ul>
+      </div>
+    );
   }
 });
 
@@ -61,11 +82,7 @@ var ChatApp = React.createClass({
     socket.on('gauge', this.valueReceive);
 
     return {
-      gauges:{
-        MySQL:{engine:'MySQL',value:1,},
-        RedisKue:{engine:'RedisKue',value:2},
-        RabbitMQ:{engine:'RabbitMQ',value:3},
-      },
+      gauges:{},
       messages: []
     };
   },
@@ -94,9 +111,7 @@ var ChatApp = React.createClass({
   render : function(){
     return (
       <div>
-        <Gauge engine="MySQL" value={this.state.gauges.MySQL.value} />
-        <Gauge engine="RedisKue" value={this.state.gauges.RedisKue.value} />
-        <Gauge engine="RabbitMQ" value={this.state.gauges.RabbitMQ.value} />
+        <GaugeSet gauges={this.state.gauges} />
         <MessageList messages={this.state.messages} />
       </div>
     );
