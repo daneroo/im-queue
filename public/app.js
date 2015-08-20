@@ -5,6 +5,21 @@
 var socket = io.connect();
 
 
+var Gauge = React.createClass({
+  render: function(){
+    var cx = React.addons.classSet;
+    var classes = cx({
+      'engine': this.props.engine,
+    });
+    return(
+      <div className={classes}>
+        Engine: {this.props.engine}
+        Rate: {this.props.value.toFixed(0)}
+      </div>
+    )
+  }
+});
+
 var Message = React.createClass({
   render: function(){
     var cx = React.addons.classSet;
@@ -45,10 +60,19 @@ var ChatApp = React.createClass({
     socket.on('info', this.messageReceive);
     socket.on('gauge', this.valueReceive);
 
-    return {messages:[]};
+    return {
+      gauges:{
+        MySQL:{engine:'MySQL',value:1,},
+        RedisKue:{engine:'RedisKue',value:2},
+        RabbitMQ:{engine:'RabbitMQ',value:3},
+      },
+      messages: []
+    };
   },
 
   valueReceive: function(opts){
+    this.state.gauges[opts.engine]=opts;
+
     this.messageReceive({
       msg: JSON.stringify(opts)
     });
@@ -70,6 +94,9 @@ var ChatApp = React.createClass({
   render : function(){
     return (
       <div>
+        <Gauge engine="MySQL" value={this.state.gauges.MySQL.value} />
+        <Gauge engine="RedisKue" value={this.state.gauges.RedisKue.value} />
+        <Gauge engine="RabbitMQ" value={this.state.gauges.RabbitMQ.value} />
         <MessageList messages={this.state.messages} />
       </div>
     );
