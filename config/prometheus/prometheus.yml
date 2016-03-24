@@ -9,8 +9,8 @@ global:
   #   foo:     bar
 
   # Attach these extra labels to all timeseries collected by this Prometheus instance.
-  labels:
-      monitor: 'im-queue-experiment'
+  # labels:
+  #     monitor: 'im-queue-experiment'
 
 # Load and evaluate rules in this file every 'evaluation_interval' seconds.
 rule_files:

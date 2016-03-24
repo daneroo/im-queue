@@ -14,8 +14,21 @@ app:
   ports:
     - 80:8000
 
+grafana:
+  image: grafana/grafana
+  volumes:
+    - ./data/grafana/grafana.db:/var/lib/grafana/grafana.db
+  links:
+    - prom
+  ports:
+    - 3000:3000
+
 prom:
-  build: docker/prometheus
+  # build: docker/prometheus
+  image: prom/prometheus
+  volumes:
+    - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+
   links:
     - app
     - redisexporter
