@@ -13,19 +13,21 @@ app:
     - rabbit
   ports:
     - 80:8000
+  restart: unless-stopped
 
 grafana:
-  image: grafana/grafana
+  image: grafana/grafana:2.6.0
   volumes:
     - ./data/grafana/grafana.db:/var/lib/grafana/grafana.db
   links:
     - prom
   ports:
     - 3000:3000
+  restart: unless-stopped
 
 prom:
   # build: docker/prometheus
-  image: prom/prometheus
+  image: prom/prometheus:0.18.0
   volumes:
     - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
 
@@ -34,11 +36,13 @@ prom:
     - redisexporter
   ports:
     - 9090:9090
+  restart: unless-stopped
 
 red:
   image: redis
   ports:
     - 6379:6379
+  restart: unless-stopped
 
 redisexporter:
   image: 21zoo/redis_exporter
@@ -48,15 +52,17 @@ redisexporter:
     - red
   ports:
     - 9121:9121
+  restart: unless-stopped
 
 rabbit:
   image: rabbitmq:management
   ports:
     - 5672:5672
     - 15672:15672 # web management interface
+  restart: unless-stopped
 
 mydb:
-  image: mysql
+  image: mysql:5.7
   environment:
     # - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     - MYSQL_ROOT_PASSWORD=supersecret
@@ -65,3 +71,4 @@ mydb:
     - MYSQL_PASSWORD=secret
   ports:
     - 3306:3306
+  restart: unless-stopped

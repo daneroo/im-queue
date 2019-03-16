@@ -1,6 +1,9 @@
 # im-queue
 
-** When in the course of asynchronous events, it becomes necessary for one process to unbind the handlers which have connected them to another, and to assume the scale to which the Laws of Crockford and Goedel entitle them, a decent respect to the opinions of subscribers requires that they should declare the causes which impel them to the concurrency.**
+_Update_: 2019-03-16, we pinned the historical versions
+ of prometheus, grafana and mysql to make this work again
+
+**When in the course of asynchronous events, it becomes necessary for one process to unbind the handlers which have connected them to another, and to assume the scale to which the Laws of Crockford and Goedel entitle them, a decent respect to the opinions of subscribers requires that they should declare the causes which impel them to the concurrency.**
 
 This is a test repo to test different approaches to a distributed work queue.
 
@@ -17,24 +20,48 @@ Later we can address issues of resilience...
 - putting the work into memory
 - Front-end for control, (metrics later)
 - putting the work into MySQL/Postgres (postgress has notify/listen)
-- putting the work into redis 
-	- [kue](https://github.com/Automattic/kue)
-	- [rsmq](https://github.com/smrchy/rsmq)
-	- [bull](https://github.com/OptimalBits/bull)
+- putting the work into redis
+  - [kue](https://github.com/Automattic/kue)
+  - [rsmq](https://github.com/smrchy/rsmq)
+  - [bull](https://github.com/OptimalBits/bull)
 - putting the work into RabbitMQ [amqplib](https://github.com/squaremo/amqp.node/) (see also rabbit.js for streams overlay/ might be a start for Rx event stream)
 - Metrics [Prometheus](https://github.com/prometheus/node_exporter)
 - Multiple workers (concurrency)
+
+## Usage
+
+```bash
+docker-compose build
+docker-compose up -d
+docker-compose logs -f
+
+open http://localhost:3000/dashboard/db/new-dashboard # admin/admin
+```
+
+- [React front end](http://localhost/)
+- [Grafana](http://localhost:3000/dashboard/db/new-dashboard)
+- [Prometheus](http://localhost:9090/graph)
+  - `log10(rate(queue_trial_pop_total[15s]))`
+
+## Persistent Grafana Config
+
+To restore (while grafana is stopped):
+
+```bash
+scp -p grafana.db data/grafana/grafana.db
+```
+
+For now we are simply mounting the sqlite database into the image,
+but Grafana v5 will allow us to import our conguration declaratively.
+An early example of this is in [this article](https://ops.tips/blog/initialize-grafana-with-preconfigured-dashboards/) which has an associated repo
 
 ## Prometheus Metrics
 
 We also instrumented redis metrics collection through another container [redis_exporter](https://github.com/oliver006/redis_exporter)
 
-Here is [an example of queue consumption rate](http://docker:9090/graph#%5B%7B%22range_input%22%3A%225m%22%2C%22end_input%22%3A%22%22%2C%22step_input%22%3A%22%22%2C%22stacked%22%3A%220%22%2C%22expr%22%3A%22log10(rate(queue_trial_pop_total%5B15s%5D))%22%2C%22tab%22%3A0%7D%5D).
-
-- [app metrics](http://docker/metrics)
-- [redis metrics](http://docker:9121/metrics) from redis_exporter
-- [Prometheus' own metrics](http://docker:9090/metrics)
-
+- [app metrics](http://localhost/metrics)
+- [redis metrics](http://localhost:9121/metrics) from redis_exporter
+- [Prometheus' own metrics](http://localhost:9090/metrics)
 
 ## References
 
